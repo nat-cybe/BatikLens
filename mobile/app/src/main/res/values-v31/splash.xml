@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#C87941</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/avd_anim</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+<!--        <item name="android:windowBackground">@drawable/_13_p2hbh6l</item>-->
+
+        <item name="postSplashScreenTheme">@style/Theme.BatikLens</item>
+    </style>
+</resources>

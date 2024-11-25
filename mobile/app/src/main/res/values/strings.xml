@@ -3,4 +3,8 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title">Apa itu Batik Lens?</string>
+    <string name="app_desc">BatikLens adalah aplikasi untuk mengenali dan mengkategori pola batik Indonesia dalam gambar beserta penjelasan serta profil dari batik. Aplikasi ini bertujuan untuk melindungi warisan budaya batik dengan memberikan detail tentang batik.
+        Selain itu, aplikasi ini juga berfungsi sebagai alat edukasi untuk meningkatkan pengetahuan tentang batik sebagai seni budaya Indonesia yang penting.</string>
+
 </resources>
