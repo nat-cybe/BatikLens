@@ -6,13 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SplashActivity"
-    android:background="#C87941">
+    android:background="@drawable/batik_background">
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="358dp"
-        android:layout_height="300dp"
-        android:src="@drawable/vd_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/avd_anim"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
