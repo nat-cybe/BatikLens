@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -51,6 +52,11 @@ dependencies {
     implementation(libs.androidx.activity)
 
     implementation(libs.androidx.core.splashscreen)
+
+    //google play services
+
+    implementation(libs.play.services.auth)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
