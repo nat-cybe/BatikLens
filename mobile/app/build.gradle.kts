@@ -54,8 +54,12 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
 
     //google play services
-
     implementation(libs.play.services.auth)
+
+    //camera
+    implementation(libs.androidx.camera.view)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.camera2)
 
 
     testImplementation(libs.junit)
