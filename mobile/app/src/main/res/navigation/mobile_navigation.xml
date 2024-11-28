@@ -14,12 +14,12 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.capstone.batiklens.ui.dashboard.CameraFragment"
-        android:label="@string/title_dashboard"
+        android:label="Camera"
         tools:layout="@layout/fragment_camera" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.capstone.batiklens.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:name="com.capstone.batiklens.ui.settings.SettingsFragment"
+        android:label="Settings"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

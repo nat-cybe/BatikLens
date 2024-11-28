@@ -36,6 +36,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -52,6 +53,8 @@ dependencies {
     implementation(libs.androidx.activity)
 
     implementation(libs.androidx.core.splashscreen)
+
+    implementation (libs.yalantis.ucrop)
 
     //google play services
     implementation(libs.play.services.auth)

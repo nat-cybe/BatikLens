@@ -1,8 +1,11 @@
 package com.capstone.batiklens
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -13,6 +16,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.capstone.batiklens.databinding.ActivityMainBinding
+import com.capstone.batiklens.ui.account.AccountActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -57,5 +61,25 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            R.id.navigation_account -> {
+                val intent = Intent(this@MainActivity, AccountActivity::class.java)
+                startActivity(intent)
+            }
+            android.R.id.home -> {
+                onBackPressedDispatcher.onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
