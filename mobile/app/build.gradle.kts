@@ -52,8 +52,10 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.activity)
 
+    //SplashScreen API
     implementation(libs.androidx.core.splashscreen)
 
+    //UCrop after photo
     implementation (libs.yalantis.ucrop)
 
     //google play services
@@ -63,6 +65,10 @@ dependencies {
     implementation(libs.androidx.camera.view)
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.camera2)
+
+    //datastore and preferences
+    implementation(libs.androidx.datastore.core.android)
+    implementation(libs.androidx.datastore.preferences)
 
 
     testImplementation(libs.junit)

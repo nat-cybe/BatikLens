@@ -10,13 +10,19 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.capstone.batiklens.databinding.ActivityMainBinding
 import com.capstone.batiklens.ui.account.AccountActivity
+import com.capstone.batiklens.utils.dataStore
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,6 +50,16 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        lifecycleScope.launch {
+            dataStore.data.map {preferences ->
+                preferences[booleanPreferencesKey("theme_setting")] ?: false
+            }.collect {isDarkMode ->
+                AppCompatDelegate.setDefaultNightMode(
+                    if(isDarkMode) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
+                )
+            }
+        }
 
         if (!allPermissionsGranted()) {
             requestPermissionLauncher.launch(Manifest.permission.CAMERA)
