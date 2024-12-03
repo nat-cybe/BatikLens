@@ -11,14 +11,22 @@ import android.os.Looper
 import android.util.Log
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.app.ActivityOptionsCompat
 
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.withCreated
+import com.capstone.batiklens.databinding.ActivitySplashBinding
+import com.capstone.batiklens.ui.AuthViewModel
 import com.capstone.batiklens.ui.welcome.WelcomeActivity
+import com.capstone.batiklens.utils.ViewModelFactory
 import com.capstone.batiklens.utils.dataStore
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.map
@@ -29,11 +37,14 @@ import kotlinx.coroutines.runBlocking
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
-    private var isNavigating = false
+    private lateinit var binding: ActivitySplashBinding
+
+    private val authViewModel by viewModels<AuthViewModel> {
+        ViewModelFactory.getInstance(this, dataStore)
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
 
         lifecycleScope.launch {
             dataStore.data.map {preferences ->
@@ -45,12 +56,20 @@ class SplashActivity : AppCompatActivity() {
                 )
             }
         }
-
-
-
+        super.onCreate(savedInstanceState)
         installSplashScreen()
+
+
+//        binding = ActivitySplashBinding.inflate(layoutInflater)
+
         setContentView(R.layout.activity_splash)
         supportActionBar?.hide()
+//        enableEdgeToEdge()
+//        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+//            view.setPadding(0, systemBars.top, 0, systemBars.bottom)
+//            insets
+//        }
 
 
         val splash = findViewById<ImageView>(R.id.icon)
@@ -58,44 +77,39 @@ class SplashActivity : AppCompatActivity() {
         val avd = AnimationUtils.loadAnimation(this,R.anim.scal_anim)
         splash.startAnimation(avd)
 
-
-//        Handler(Looper.getMainLooper()).postDelayed({
-//            if(!isNavigating) {
-//                Log.d("splashMove", "moving")
-//                isNavigating = true
-//                startMainActivity()
-//            }},2000) // 2-second delay
-        if (savedInstanceState == null) {
-//            isNavigating = true// Only schedule navigation on the first creation
+        if(savedInstanceState == null){
             lifecycleScope.launch {
                 delay(2000)
-                startMainActivity()
+                getIsUserAuthenticate()
             }
-//            Handler(Looper.getMainLooper()).postDelayed({
-//                startMainActivity()
-//            }, 2000)
         }else{
-            Log.d("move", "$savedInstanceState")
             lifecycleScope.launch {
                 delay(2000)
-                startMainActivity()
+                getIsUserAuthenticate()
             }
         }
-
     }
 
-//    override fun onStart() {
-//        super.onStart()
-//
-//
-//    }
+    private fun getIsUserAuthenticate() {
+        val user = authViewModel.currentUser()
+        Log.d("splashCheck",user?.displayName.toString())
+
+        if(user != null){
+            startMainActivity()
+        }else{
+            startWelcomeActivity()
+        }
+    }
 
     private fun startMainActivity() {
         Log.d("splashMove","move")
-//            .apply {
-//                flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-//            }
-            startActivity(Intent(this, WelcomeActivity::class.java))
-            finish()
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
+    }
+
+    private fun startWelcomeActivity() {
+        Log.d("splashMove","move")
+        startActivity(Intent(this, WelcomeActivity::class.java))
+        finish()
     }
 }

@@ -58,8 +58,14 @@ dependencies {
     //UCrop after photo
     implementation (libs.yalantis.ucrop)
 
-    //google play services
+    //google services
     implementation(libs.play.services.auth)
+    implementation(libs.firebase.auth)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+//    implementation(libs.googleid)
+
+    implementation (libs.googleid.vlatestversion)
 
     //camera
     implementation(libs.androidx.camera.view)
@@ -69,6 +75,7 @@ dependencies {
     //datastore and preferences
     implementation(libs.androidx.datastore.core.android)
     implementation(libs.androidx.datastore.preferences)
+//    implementation(libs.firebase.firestore)
 
 
     testImplementation(libs.junit)
