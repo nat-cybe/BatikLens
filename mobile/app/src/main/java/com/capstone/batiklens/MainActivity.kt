@@ -10,13 +10,9 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
-import androidx.datastore.preferences.core.booleanPreferencesKey
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -27,8 +23,8 @@ import com.capstone.batiklens.ui.account.AccountActivity
 import com.capstone.batiklens.ui.welcome.WelcomeActivity
 import com.capstone.batiklens.utils.ViewModelFactory
 import com.capstone.batiklens.utils.dataStore
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -61,14 +57,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        lifecycleScope.launch {
-            dataStore.data.map {preferences ->
-                preferences[booleanPreferencesKey("theme_setting")] ?: false
-            }.collect {isDarkMode ->
-                AppCompatDelegate.setDefaultNightMode(
-                    if(isDarkMode) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
-                )
-            }
+//        lifecycleScope.launch {
+//            dataStore.data.map {preferences ->
+//                preferences[booleanPreferencesKey("theme_setting")] ?: false
+//            }.collect {isDarkMode ->
+//                AppCompatDelegate.setDefaultNightMode(
+//                    if(isDarkMode) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
+//                )
+//            }
+//        }
+        authViewModel.getThemeSettings().observe(this){isDarkMode ->
+            if(isDarkMode) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
         }
 
         if (!allPermissionsGranted()) {
@@ -100,10 +99,6 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, WelcomeActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            overrideActivityTransition(OVERRIDE_TRANSITION_OPEN, android.R.anim.fade_in, android.R.anim.fade_out)
-        }
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         finish()
     }
 

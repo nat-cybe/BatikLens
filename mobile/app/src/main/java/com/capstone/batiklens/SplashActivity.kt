@@ -1,29 +1,17 @@
 package com.capstone.batiklens
 
-import android.animation.AnimatorInflater
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.drawable.AnimatedVectorDrawable
-import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.app.ActivityOptionsCompat
-
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.withCreated
-import com.capstone.batiklens.databinding.ActivitySplashBinding
 import com.capstone.batiklens.ui.AuthViewModel
 import com.capstone.batiklens.ui.welcome.WelcomeActivity
 import com.capstone.batiklens.utils.ViewModelFactory
@@ -31,13 +19,10 @@ import com.capstone.batiklens.utils.dataStore
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivitySplashBinding
 
     private val authViewModel by viewModels<AuthViewModel> {
         ViewModelFactory.getInstance(this, dataStore)

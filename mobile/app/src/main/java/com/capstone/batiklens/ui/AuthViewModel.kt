@@ -13,4 +13,8 @@ class AuthViewModel(private val authRepository: AuthRepository): ViewModel() {
     fun signOut() = authRepository.signOut()
 
     fun currentUser() = authRepository.getCurrentUser()
+
+    fun getUserData() = authRepository.getUserData()
+
+    fun getThemeSettings() = authRepository.getThemeSettings()
 }

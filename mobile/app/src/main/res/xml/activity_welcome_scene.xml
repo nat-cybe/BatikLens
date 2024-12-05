@@ -32,7 +32,6 @@
             motion:layout_constraintStart_toStartOf="@+id/box"
             android:layout_marginTop="60dp" />
         <Constraint
-            android:id="@+id/textView2"
             motion:layout_constraintEnd_toEndOf="@+id/box"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -59,7 +58,6 @@
             motion:layout_constraintStart_toStartOf="@+id/box2"
             android:layout_marginTop="60dp" />
         <Constraint
-            android:id="@+id/desc"
             motion:layout_constraintEnd_toEndOf="@+id/box2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -83,7 +81,6 @@
             motion:layout_constraintStart_toStartOf="@+id/box2"
             android:layout_marginTop="60dp" />
         <Constraint
-            android:id="@+id/desc2"
             motion:layout_constraintEnd_toEndOf="@+id/box2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

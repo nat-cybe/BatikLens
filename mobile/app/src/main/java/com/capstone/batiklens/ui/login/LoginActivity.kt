@@ -1,16 +1,11 @@
 package com.capstone.batiklens.ui.login
 
-import android.content.Context
 import android.content.Intent
-import android.credentials.GetCredentialException
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
@@ -24,7 +19,6 @@ import com.capstone.batiklens.ui.AuthViewModel
 import com.capstone.batiklens.ui.register.RegisterActivity
 import com.capstone.batiklens.utils.ViewModelFactory
 import com.capstone.batiklens.utils.dataStore
-import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import kotlinx.coroutines.launch

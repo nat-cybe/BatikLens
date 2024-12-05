@@ -4,12 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.capstone.batiklens.R
+import com.capstone.batiklens.data.Result
 import com.capstone.batiklens.databinding.ActivityAccountBinding
 import com.capstone.batiklens.ui.AuthViewModel
 import com.capstone.batiklens.ui.history.HistoryActivity
@@ -43,7 +40,19 @@ class AccountActivity : AppCompatActivity() {
             userLogout()
         }
 
-        binding.tvEmail.text = authViewModel.currentUser()?.email
+//        binding.tvEmail.text = authViewModel.currentUser()?.email
+
+        authViewModel.getUserData().observe(this){result ->
+            when(result){
+                is Result.Loading -> {}
+                is Result.Success -> {
+                    binding.tvEmail.text = result.data.username
+                }
+                is Result.Error -> {
+                    Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
 
     }
 

@@ -2,12 +2,8 @@ package com.capstone.batiklens.ui.result
 
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.capstone.batiklens.R
 import com.capstone.batiklens.databinding.ActivityResultBinding
 
 class ResultActivity : AppCompatActivity() {

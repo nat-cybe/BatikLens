@@ -60,12 +60,15 @@ dependencies {
 
     //google services
     implementation(libs.play.services.auth)
-    implementation(libs.firebase.auth)
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
-//    implementation(libs.googleid)
-
     implementation (libs.googleid.vlatestversion)
+
+    implementation(platform(libs.firebase.bom))
+//    implementation(libs.firebase.auth)
+//    implementation (libs.firebase.firestore)
+    implementation(libs.google.firebase.auth)
+    implementation(libs.google.firebase.firestore)
 
     //camera
     implementation(libs.androidx.camera.view)
@@ -75,7 +78,6 @@ dependencies {
     //datastore and preferences
     implementation(libs.androidx.datastore.core.android)
     implementation(libs.androidx.datastore.preferences)
-//    implementation(libs.firebase.firestore)
 
 
     testImplementation(libs.junit)

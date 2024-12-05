@@ -11,12 +11,12 @@
         android:id="@+id/navigation_dashboard"
         android:enabled="true"
         android:icon="@drawable/baseline_camera_24"
-        android:title="Camera" />
+        android:title="@string/camera" />
 
     <item
         android:id="@+id/navigation_notifications"
         android:enabled="true"
         android:icon="@drawable/settings_24"
-        android:title="Settings" />
+        android:title="@string/settings" />
 
 </menu>

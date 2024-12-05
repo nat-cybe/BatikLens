@@ -57,7 +57,7 @@
         style="@style/Widget.Material3.Button"
         android:layout_width="239dp"
         android:layout_height="48dp"
-        android:text="Mulai"
+        android:text="@string/start"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
