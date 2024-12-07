@@ -144,6 +144,7 @@
         android:text="@string/signup"
         android:layout_marginStart="6dp"
         android:layout_marginEnd="6dp"
+        app:layout_constraintEnd_toEndOf="@id/googleBtn"
         app:layout_constraintTop_toTopOf="@id/before"
         app:layout_constraintStart_toEndOf="@id/before"
         app:layout_constraintBottom_toBottomOf="@id/before"

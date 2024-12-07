@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.capstone.batiklens.R
 import com.capstone.batiklens.data.Result
 import com.capstone.batiklens.databinding.ActivityAccountBinding
 import com.capstone.batiklens.ui.AuthViewModel
@@ -26,7 +27,7 @@ class AccountActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Account"
+        supportActionBar?.title = getString(R.string.account)
 
         binding = ActivityAccountBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -69,7 +70,7 @@ class AccountActivity : AppCompatActivity() {
         val user = authViewModel.currentUser()
         if (user == null){
             goToWelcomeActivity()
-            Toast.makeText(this,"You have been Logged Out", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.you_have_been_logged_out), Toast.LENGTH_LONG).show()
         }
     }
 

@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.preferencesOf
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.lifecycleScope
 import com.capstone.batiklens.ui.AuthViewModel
 import com.capstone.batiklens.ui.welcome.WelcomeActivity
@@ -19,6 +21,7 @@ import com.capstone.batiklens.utils.dataStore
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 
 @SuppressLint("CustomSplashScreen")
@@ -41,8 +44,17 @@ class SplashActivity : AppCompatActivity() {
                 )
             }
         }
+
         super.onCreate(savedInstanceState)
         installSplashScreen()
+        lifecycleScope.launch {
+            dataStore.data.map { preferences->
+                preferences[stringPreferencesKey("language_setting")] ?: "en"
+            }.collect{isLang ->
+                Log.d("islang", isLang)
+                updateLocale(isLang)
+            }
+        }
 
 
 //        binding = ActivitySplashBinding.inflate(layoutInflater)
@@ -75,6 +87,13 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
+    private fun updateLocale(languageCode: String) {
+        val locale = Locale(languageCode)
+        Locale.setDefault(locale)
+        val config = resources.configuration
+        config.setLocale(locale)
+        resources.updateConfiguration(config, resources.displayMetrics)
+    }
     private fun getIsUserAuthenticate() {
         val user = authViewModel.currentUser()
         Log.d("splashCheck",user?.displayName.toString())
