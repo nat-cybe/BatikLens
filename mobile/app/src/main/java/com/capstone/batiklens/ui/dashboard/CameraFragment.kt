@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -32,6 +33,8 @@ class CameraFragment : Fragment() {
     private val binding get() = _binding!!
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     private var imageCapture: ImageCapture? = null
+
+    private var currentImageUri : Uri? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,7 +62,33 @@ class CameraFragment : Fragment() {
         }
 
         binding.takePicture.setOnClickListener{takePicture()}
-//        startCamera()
+
+        binding.pickGallery.setOnClickListener { pickFromGalley() }
+    }
+
+    private fun pickFromGalley() {
+        launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+    }
+
+    private val launcherGallery = registerForActivityResult(
+        ActivityResultContracts.PickVisualMedia()
+    ){uri: Uri? ->
+        if (uri != null){
+            currentImageUri = uri
+
+            val uCropOption = UCrop.Options()
+            val source = currentImageUri!!
+            val destinationFile = createCustomTempFile(requireContext(), "cropped")
+            val destinationUri = Uri.fromFile(destinationFile)
+
+            val uCrop = UCrop.of(source, destinationUri)
+                .withOptions(uCropOption)
+                .withMaxResultSize(1000,1000)
+
+            registerUCrop.launch(uCrop.getIntent(requireContext()))
+        }else{
+            Log.d("photo Picker", "No Media Selected")
+        }
     }
 
     override fun onResume() {
