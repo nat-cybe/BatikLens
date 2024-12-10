@@ -13,8 +13,8 @@ admin.initializeApp({
 (async () => {
 
     const server = Hapi.server({
-        port: 3000,
-        host: 'localhost',
+        port: 8080,
+        host: '0.0.0.0',
         routes: {
             cors: {
               origin: ['*'],
