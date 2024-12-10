@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.capstone.batiklens"
+    namespace = "com.capstone.batiklen"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.capstone.batiklens"
+        applicationId = "com.capstone.batiklen"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
