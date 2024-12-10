@@ -9,13 +9,14 @@ async function postPredictBatikHandler(request, h) {
   const { model } = request.server.app;
 
   try {
-    const { confidenceScore, label, namaBatik } = await predictBatikClass(model, image);
+    const { confidenceScore, label, namaBatik, idBatik } = await predictBatikClass(model, image);
 
     const id = crypto.randomUUID();
     const createdAt = new Date().toISOString();
 
     const data = {
       "id": id,
+      "idBatik": idBatik,
       "namaBatik": namaBatik,
       "result": label,
       "confidenceScore": confidenceScore,

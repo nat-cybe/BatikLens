@@ -32,10 +32,13 @@ async function predictBatikClass(model, image) {
         const confidenceScore = Math.max(...predictionData) * 100; //  Score multiplied by 100 to get percentage
 
         // Get the class name
+        const idBatik = classIndex + 1;
         const label = className[classIndex];
         const namaBatik = label; // Assuming the label is equivalent to the "namaBatik"
 
-        return { confidenceScore, label, namaBatik };
+        // disini akan diisi kode untuk menambahkan informasi mengenai metadata batik seperti asal, nama, filosofi unik dan informasi lainnya
+
+        return { confidenceScore, label, namaBatik, idBatik};
 
     } catch (error) {
         console.error('Error during prediction:', error);
