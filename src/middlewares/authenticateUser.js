@@ -1,5 +1,5 @@
 const admin = require("firebase-admin");
-const Boom = require("@hapi/boom"); // Tambahkan ini
+const Boom = require("@hapi/boom");
 
 async function authenticateUser(request, h) {
     const token = request.headers.authorization?.split(' ')[1]; // Format: "Bearer <token>"

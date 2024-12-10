@@ -1,4 +1,4 @@
-const { postPredictBatikHandler, getMetadataHandler } = require('./handler');
+const { postPredictBatikHandler, getMetadataHandler, getHistoryHandler } = require('./handler');
 const authenticateUser = require('../middlewares/authenticateUser');
  
 const routes = [
@@ -13,6 +13,14 @@ const routes = [
         multipart: true
       }
     }
+  },
+  {
+    path: "/history",
+    method: "GET",
+    handler: getHistoryHandler,
+    options: {
+      pre: [{ method: authenticateUser }],
+    },
   },
   {
     path: "/batikmetadata/{id}",
